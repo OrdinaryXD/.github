@@ -4,10 +4,10 @@
 
 <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&duration=2800&pause=2000&color=A855F7&center=true&vCenter=true&width=940&lines=🚀+Превращаем+идеи+в+цифровые+шедевры;💡+Создаем+инновационные+веб-решения;⚡+Быстрая+разработка%2C+качественный+результат" alt="Typing SVG" />
 
-[![Followers](https://img.shields.io/github/followers/XDTeam?style=for-the-badge&logo=github&logoColor=white&labelColor=24292e&color=0366d6)](https://github.com/XDTeam)
-[![Stars](https://img.shields.io/github/stars/XDTeam?style=for-the-badge&logo=github&logoColor=white&labelColor=24292e&color=0366d6)](https://github.com/XDTeam)
-[![Website](https://img.shields.io/badge/🌐-Website-FF6B6B?style=for-the-badge&logoColor=white)](https://xdteam.dev)
-[![Telegram](https://img.shields.io/badge/💬-Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/xdteam_dev)
+[![Followers](https://img.shields.io/github/followers/OrdinaryXD?style=for-the-badge&logo=github&logoColor=white&labelColor=24292e&color=0366d6)](https://github.com/OrdinaryXD)
+[![Stars](https://img.shields.io/github/stars/OrdinaryXD?style=for-the-badge&logo=github&logoColor=white&labelColor=24292e&color=0366d6)](https://github.com/OrdinaryXD)
+[![Website](https://img.shields.io/badge/🌐-Website-FF6B6B?style=for-the-badge&logoColor=white)](https://xdteam.tech)
+[![Telegram](https://img.shields.io/badge/💬-Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/loyal_pelmen)
 
 </div>
 
