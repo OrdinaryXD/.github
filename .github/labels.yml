@@ -1,0 +1,218 @@
+# 🏷️ XDTeam Label Configuration
+
+# 🐛 Bug Reports
+- name: "bug"
+  color: "d73a4a"
+  description: "Something isn't working"
+  
+- name: "critical"
+  color: "b60205"
+  description: "Critical bug that needs immediate attention"
+  
+# ✨ Features & Enhancements
+- name: "enhancement"
+  color: "a2eeef"
+  description: "New feature or request"
+  
+- name: "feature"
+  color: "0075ca"
+  description: "New feature implementation"
+  
+# 📚 Documentation
+- name: "documentation"
+  color: "0052cc"
+  description: "Improvements or additions to documentation"
+  
+# 🧹 Maintenance
+- name: "maintenance"
+  color: "fbca04"
+  description: "Repository maintenance and housekeeping"
+  
+- name: "refactor"
+  color: "fbca04"
+  description: "Code refactoring without changing functionality"
+  
+# ❓ Questions & Help
+- name: "question"
+  color: "d876e3"
+  description: "Further information is requested"
+  
+- name: "help wanted"
+  color: "008672"
+  description: "Extra attention is needed"
+  
+- name: "good first issue"
+  color: "7057ff"
+  description: "Good for newcomers"
+  
+# 🚦 Status Labels
+- name: "needs-triage"
+  color: "ffa500"
+  description: "Needs to be triaged by maintainers"
+  
+- name: "needs-reproduction"
+  color: "ffa500"
+  description: "Needs a reproduction case"
+  
+- name: "needs-discussion"
+  color: "ffa500"
+  description: "Needs further discussion"
+  
+- name: "ready-for-review"
+  color: "0e8a16"
+  description: "Ready for code review"
+  
+- name: "work-in-progress"
+  color: "c5def5"
+  description: "Work in progress"
+  
+# 🎯 Priority
+- name: "priority-low"
+  color: "e4e669"
+  description: "Low priority"
+  
+- name: "priority-medium"
+  color: "fbca04"
+  description: "Medium priority"
+  
+- name: "priority-high"
+  color: "d93f0b"
+  description: "High priority"
+  
+- name: "priority-critical"
+  color: "b60205"
+  description: "Critical priority"
+  
+# 🔒 Security
+- name: "security"
+  color: "b60205"
+  description: "Security related issue"
+  
+# 👋 Community
+- name: "👋 first-time-contributor"
+  color: "ff69b4"
+  description: "First contribution by this person"
+  
+# ⏰ Automation
+- name: "⏰ stale"
+  color: "795548"
+  description: "Marked as stale due to inactivity"
+  
+- name: "🤖 auto-merge"
+  color: "795548"
+  description: "Approved for automatic merging"
+  
+# 🚫 Won't Fix
+- name: "wontfix"
+  color: "ffffff"
+  description: "This will not be worked on"
+  
+- name: "duplicate"
+  color: "cfd3d7"
+  description: "This issue or pull request already exists"
+  
+- name: "invalid"
+  color: "e4e669"
+  description: "This doesn't seem right"
+  
+# 🎨 Design
+- name: "design"
+  color: "ff69b4"
+  description: "Design related changes"
+  
+- name: "ui"
+  color: "ff69b4"
+  description: "User interface changes"
+  
+- name: "ux"
+  color: "ff69b4"
+  description: "User experience improvements"
+  
+# 🧪 Testing
+- name: "testing"
+  color: "c5def5"
+  description: "Related to testing"
+  
+# 📱 Platform Specific
+- name: "android"
+  color: "3ddc84"
+  description: "Android specific"
+  
+- name: "ios"
+  color: "007aff"
+  description: "iOS specific"
+  
+- name: "web"
+  color: "0366d6"
+  description: "Web platform specific"
+  
+# 🔗 Dependencies
+- name: "dependencies"
+  color: "0366d6"
+  description: "Pull requests that update a dependency file"
+  
+- name: "⚠️ major-update"
+  color: "d93f0b"
+  description: "Major version dependency update"
+  
+# 🚀 Release
+- name: "release"
+  color: "0e8a16"
+  description: "Related to releases"
+  
+# 💥 Breaking Changes
+- name: "💥 breaking-change"
+  color: "b60205"
+  description: "Contains breaking changes"
+  
+# 📏 Size Labels
+- name: "size-xs"
+  color: "c2e0c6"
+  description: "Extra small changes (1-3 files)"
+  
+- name: "size-s"
+  color: "7fb800"
+  description: "Small changes (4-10 files)"
+  
+- name: "size-m"
+  color: "fbca04"
+  description: "Medium changes (11-30 files)"
+  
+- name: "size-l"
+  color: "f9d0c4"
+  description: "Large changes (31-100 files)"
+  
+- name: "size-xl"
+  color: "d4c5f9"
+  description: "Extra large changes (100+ files)"
+
+# 🔧 Technical Areas
+- name: "api"
+  color: "0052cc"
+  description: "API related changes"
+  
+- name: "database"
+  color: "5319e7"
+  description: "Database related changes"
+  
+- name: "performance"
+  color: "d876e3"
+  description: "Performance improvements"
+  
+- name: "style"
+  color: "f1c40f"
+  description: "Code style and formatting"
+
+# 📝 Documentation Types
+- name: "docs-readme"
+  color: "0052cc"
+  description: "README documentation"
+  
+- name: "docs-api"
+  color: "0052cc"
+  description: "API documentation"
+  
+- name: "docs-guide"
+  color: "0052cc"
+  description: "Tutorial or guide documentation"
+

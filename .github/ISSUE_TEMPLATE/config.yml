@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📧 Email поддержка
+    url: mailto:artyom@loyalpelmen.ru
+    about: Для частных вопросов и коммерческих предложений
+  - name: 🌐 Официальный сайт
+    url: https://xdteam.tech
+    about: Больше информации о наших услугах
+

@@ -1,0 +1,244 @@
+name: 🔍 PR Quality Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  pr-checks:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+      
+    steps:
+      - name: Check PR Title
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = context.payload.pull_request.title;
+            const conventionalCommitPattern = /^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\(.+\))?: .{1,50}/;
+            
+            if (!conventionalCommitPattern.test(title)) {
+              const comment = `## ❌ PR Title Check Failed
+              
+              Заголовок PR должен соответствовать [Conventional Commits](https://www.conventionalcommits.org/) формату:
+              
+              \`<type>(<scope>): <description>\`
+              
+              **Примеры:**
+              - \`feat(auth): add Google OAuth integration\`
+              - \`fix(api): handle timeout errors properly\`
+              - \`docs: update installation guide\`
+              - \`refactor(ui): simplify button component\`
+              
+              **Доступные типы:**
+              - \`feat\` - новая функция
+              - \`fix\` - исправление бага
+              - \`docs\` - документация
+              - \`style\` - форматирование
+              - \`refactor\` - рефакторинг
+              - \`test\` - тесты
+              - \`chore\` - обслуживание
+              - \`perf\` - производительность
+              - \`ci\` - CI/CD
+              - \`build\` - сборка
+              - \`revert\` - откат изменений
+              
+              Пожалуйста, обновите заголовок PR.`;
+              
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment
+              });
+              
+              core.setFailed('PR title does not follow conventional commits format');
+            } else {
+              console.log('✅ PR title follows conventional commits format');
+            }
+            
+      - name: Check PR Description
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.pull_request.body || '';
+            const hasDescription = body.length > 50;
+            const hasChecklist = body.includes('- [');
+            
+            if (!hasDescription) {
+              const comment = `## ❌ PR Description Check Failed
+              
+              Описание PR слишком короткое или отсутствует.
+              
+              Пожалуйста, добавьте:
+              - 📝 Подробное описание изменений
+              - 🎯 Цель и контекст изменений
+              - 🧪 Информацию о тестировании
+              - 📋 Заполните чеклист из шаблона
+              
+              Хорошее описание помогает ревьюерам понять ваши изменения!`;
+              
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment
+              });
+              
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ['needs-description']
+              });
+            } else {
+              console.log('✅ PR has adequate description');
+            }
+            
+      - name: Check for Breaking Changes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = context.payload.pull_request.title;
+            const body = context.payload.pull_request.body || '';
+            
+            const hasBreakingChange = 
+              title.includes('BREAKING CHANGE') ||
+              title.includes('!:') ||
+              body.includes('BREAKING CHANGE') ||
+              body.includes('breaking change') ||
+              body.includes('💥');
+              
+            if (hasBreakingChange) {
+              const comment = `## ⚠️ Breaking Change Detected
+              
+              Этот PR содержит критические изменения!
+              
+              **Что нужно сделать:**
+              - 📖 Убедитесь, что breaking changes документированы в описании
+              - 📝 Обновите CHANGELOG.md
+              - 🔢 Запланируйте major версию релиза
+              - 📢 Подготовьте migration guide для пользователей
+              - 🧪 Тщательно протестируйте изменения
+              
+              **Ревьюерам:** Особое внимание к обратной совместимости!`;
+              
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment
+              });
+              
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ['💥 breaking-change', 'needs-review', 'priority-high']
+              });
+            }
+            
+      - name: Auto-assign Labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = context.payload.pull_request.title.toLowerCase();
+            const body = (context.payload.pull_request.body || '').toLowerCase();
+            const files = context.payload.pull_request.changed_files;
+            
+            const labels = [];
+            
+            // Type-based labels
+            if (title.includes('feat')) labels.push('feature');
+            if (title.includes('fix')) labels.push('bug');
+            if (title.includes('docs')) labels.push('documentation');
+            if (title.includes('test')) labels.push('testing');
+            if (title.includes('refactor')) labels.push('refactor');
+            if (title.includes('perf')) labels.push('performance');
+            if (title.includes('style')) labels.push('style');
+            
+            // Content-based labels
+            if (body.includes('security') || title.includes('security')) {
+              labels.push('security');
+            }
+            
+            if (body.includes('ui') || body.includes('interface') || title.includes('ui')) {
+              labels.push('ui');
+            }
+            
+            if (body.includes('api') || title.includes('api')) {
+              labels.push('api');
+            }
+            
+            // Size estimation based on changes
+            if (files <= 3) labels.push('size-xs');
+            else if (files <= 10) labels.push('size-s');
+            else if (files <= 30) labels.push('size-m');
+            else if (files <= 100) labels.push('size-l');
+            else labels.push('size-xl');
+            
+            if (labels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: labels
+              });
+              
+              console.log(`Added labels: ${labels.join(', ')}`);
+            }
+            
+      - name: Request Reviewers
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const author = context.payload.pull_request.user.login;
+            const title = context.payload.pull_request.title.toLowerCase();
+            const body = (context.payload.pull_request.body || '').toLowerCase();
+            
+            // Core team members (adjust to your actual team)
+            const coreTeam = ['team-lead', 'senior-dev1', 'senior-dev2'];
+            const frontendTeam = ['frontend-lead', 'ui-specialist'];
+            const backendTeam = ['backend-lead', 'api-specialist'];
+            const securityTeam = ['security-lead'];
+            
+            let reviewers = [];
+            
+            // Auto-assign based on content
+            if (title.includes('security') || body.includes('security')) {
+              reviewers = reviewers.concat(securityTeam);
+            }
+            
+            if (title.includes('api') || title.includes('backend') || body.includes('server')) {
+              reviewers = reviewers.concat(backendTeam.slice(0, 2));
+            }
+            
+            if (title.includes('ui') || title.includes('frontend') || body.includes('component')) {
+              reviewers = reviewers.concat(frontendTeam.slice(0, 1));
+            }
+            
+            // Always include at least one core team member
+            if (reviewers.length === 0) {
+              reviewers = coreTeam.slice(0, 1);
+            }
+            
+            // Remove author from reviewers
+            reviewers = reviewers.filter(reviewer => reviewer !== author);
+            
+            if (reviewers.length > 0) {
+              try {
+                await github.rest.pulls.requestReviewers({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  pull_number: context.issue.number,
+                  reviewers: reviewers.slice(0, 3) // Max 3 reviewers
+                });
+                
+                console.log(`Requested reviews from: ${reviewers.join(', ')}`);
+              } catch (error) {
+                console.log('Could not auto-assign reviewers:', error.message);
+              }
+            }
+

@@ -1,0 +1,87 @@
+name: ❓ Вопрос / Поддержка
+description: Задать вопрос или получить помощь
+title: "[QUESTION]: "
+labels: ["question", "support"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ❓ Вопрос / Поддержка
+        
+        Мы рады помочь! Задайте свой вопрос, и мы постараемся ответить как можно быстрее.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Предварительная проверка
+      description: Пожалуйста, убедитесь, что выполнили следующие шаги
+      options:
+        - label: Я искал ответ в документации
+          required: true
+        - label: Я искал похожие вопросы в issue
+          required: true
+        - label: Я проверил FAQ (если есть)
+          required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Категория вопроса
+      description: К какой области относится ваш вопрос?
+      options:
+        - Установка и настройка
+        - Использование функций
+        - Интеграция с другими сервисами
+        - Производительность
+        - Безопасность
+        - Разработка и вклад в проект
+        - Коммерческое использование
+        - Другое
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Ваш вопрос
+      description: Опишите ваш вопрос максимально подробно
+      placeholder: |
+        Что именно вы хотите узнать или сделать?
+        Какую задачу пытаетесь решить?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Контекст
+      description: Предоставьте дополнительную информацию о вашей ситуации
+      placeholder: |
+        - Что вы уже пробовали?
+        - Какие ошибки возникают?
+        - Ваше окружение (ОС, версии и т.д.)
+        - Конкретные требования или ограничения
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Ожидаемый результат
+      description: Что вы хотите получить в итоге?
+      placeholder: Опишите желаемый результат или поведение
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Код / Конфигурация
+      description: Если применимо, покажите ваш код или конфигурацию
+      placeholder: Вставьте релевантный код или конфигурацию
+      render: javascript
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Дополнительная информация
+      description: Любая другая информация, которая может быть полезна
+      placeholder: Ссылки, скриншоты, идеи и т.д.
+
