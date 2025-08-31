@@ -1,6 +1,6 @@
 <div align="center">
   
-![XDTeam Header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=XDTeam&fontSize=80&fontColor=fff&animation=twinkling&fontAlignY=32&desc=Студия%20веб-разработки%20нового%20поколения&descAlignY=55&descSize=18)
+![XDTeam Header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=XDTeam&fontSize=80&fontColor=fff&animation=twinkling&fontAlignY=32&desc=Студия%20Цифровых%20Решений&descAlignY=55&descSize=18)
 
 <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&duration=2800&pause=2000&color=A855F7&center=true&vCenter=true&width=940&lines=🚀+Превращаем+идеи+в+цифровые+шедевры;💡+Создаем+инновационные+веб-решения;⚡+Быстрая+разработка%2C+качественный+результат" alt="Typing SVG" />
 
